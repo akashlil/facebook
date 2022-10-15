@@ -119,7 +119,7 @@ const InputBox = () => {
           <input
             type="text"
             ref={postInput}
-            className="bg-gray-100  hover:bg-gray-200 cursor-pointer w-full placeholder-gray-700 rounded-full px-3 py-3 outline-none "
+            className="bg-gray-100 hover:bg-gray-200 cursor-pointer w-full placeholder-gray-700 rounded-full px-3 py-3 outline-none "
             placeholder="What's on you mind, Md?"
           />
           <button

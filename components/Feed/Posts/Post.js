@@ -21,8 +21,8 @@ const Post = ({ data }) => {
         <h1 className="text-gray-700 text-base text-left ">{data?.post}</h1>
       </div>
       <Image
-        width={800}
-        height={600}
+        width={700}
+        height={500}
         src={data?.imagePost}
         alt="Sunset in the mountains"
       />
