@@ -22,7 +22,7 @@ const Post = ({ data }) => {
       </div>
       <Image
         width={800}
-        height={800}
+        height={600}
         src={data?.imagePost}
         alt="Sunset in the mountains"
       />

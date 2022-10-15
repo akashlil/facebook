@@ -119,7 +119,7 @@ const InputBox = () => {
           <input
             type="text"
             ref={postInput}
-            className="bg-gray-100  hover:bg-gray-200 cursor-pointer w-full placeholder-gray-700 rounded-full px-3 py-2 outline-none "
+            className="bg-gray-100  hover:bg-gray-200 cursor-pointer w-full placeholder-gray-700 rounded-full px-3 py-3 outline-none "
             placeholder="What's on you mind, Md?"
           />
           <button
@@ -130,7 +130,16 @@ const InputBox = () => {
           </button>
         </div>
       </form>
-      {progress}
+
+      <div class=" bg-gray-200 rounded-full dark:bg-gray-700 mt-2">
+        <div
+          class="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
+          style={{ width: `${progress ? progress.toFixed(1) : "2"}%` }}
+        >
+          {progress ? progress : "0"}%
+        </div>
+      </div>
+
       <hr className="my-3" />
       <div className="flex justify-around">
         <div className="flex items-center gap-1 px-3 py-1 md:px-10 md:py-2 cursor-pointer text-gray-600 hover:bg-gray-200 rounded-md ">
