@@ -3,35 +3,42 @@ import { BsCamera, BsEmojiSmile, BsSearch } from "react-icons/bs";
 import { HiOutlineGift } from "react-icons/hi";
 import { AiOutlineLike } from "react-icons/ai";
 import { RiMessengerLine } from "react-icons/ri";
-const Post = () => {
+import Image from "next/image";
+const Post = ({ data }) => {
   return (
-    <div className="rounded mt-6 mb-6 overflow-hidden shadow-md bg-white">
+    <div className="rounded relative mt-6 mb-6 overflow-hidden shadow-md bg-white">
       <div className="px-6 py-4">
-        <div className="font-bold text-xl mb-2">The Coldest Sunset</div>
-        <p className="text-gray-700 text-base text-left ">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
-          quia, nulla! Maiores et perferendis eaque, exercitationem praesentium
-          nihil.
-        </p>
+        <div className="flex space-x-2 items-center">
+          {" "}
+          <Image
+            src={data?.photoURL}
+            width={35}
+            height={35}
+            className="rounded-full"
+          ></Image>
+          <div className="font-bold text-md">{data?.displayName}</div>
+        </div>
+        <h1 className="text-gray-700 text-base text-left ">{data?.post}</h1>
       </div>
-      <img
-        className="w-full"
-        src="https://v1.tailwindcss.com/img/card-top.jpg"
+      <Image
+        width={800}
+        height={800}
+        src={data?.imagePost}
         alt="Sunset in the mountains"
       />
       <hr className="mt-4 mx-4" />
       <div className="pt-2 pb-2 items-center flex justify-around">
         <div className="flex items-center gap-1 px-3 py-1 md:px-10 md:py-2 cursor-pointer text-gray-600 hover:bg-gray-200 rounded-md ">
           <AiOutlineLike />
-          <p className="text-md font-semibold">Like</p>
+          <h1 className="text-md font-semibold">Like</h1>
         </div>
         <div className="flex items-center gap-1 px-3 py-1 md:px-10 md:py-2 cursor-pointer text-gray-600 hover:bg-gray-200 rounded-md ">
           <GoComment />
-          <p className="text-md mb-1  font-semibold">Comment</p>
+          <h1 className="text-md mb-1  font-semibold">Comment</h1>
         </div>
         <div className="flex items-center  gap-1 px-3 py-8 md:px-10 md:py-2 cursor-pointer text-gray-600 hover:bg-gray-200 rounded-md ">
           <RiMessengerLine />
-          <p className="text-md font-semibold">Share</p>
+          <h1 className="text-md font-semibold">Share</h1>
         </div>
       </div>
       <hr className=" mx-4" />

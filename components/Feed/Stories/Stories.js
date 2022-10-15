@@ -30,23 +30,11 @@ const storiesData = [
     src: "https://links.papareact.com/4zn",
     profile: "https://links.papareact.com/f0p",
   },
-  {
-    id: 5,
-    name: "Elon Musk",
-    src: "https://links.papareact.com/4zn",
-    profile: "https://links.papareact.com/f0p",
-  },
-  {
-    id: 5,
-    name: "Elon Musk",
-    src: "https://links.papareact.com/4zn",
-    profile: "https://links.papareact.com/f0p",
-  },
 ];
 const Stories = () => {
   return (
     <div className="flex space-x-3 no-scrollbar overflow-x-auto">
-      {storiesData.map((story) => (
+      {storiesData?.map((story) => (
         <StoryCard story={story} key={story.id} />
       ))}
     </div>

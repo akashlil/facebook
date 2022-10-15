@@ -15,11 +15,11 @@ export default function Home() {
         />
       </Head>
       <Header />
-      <main className="flex">
-        <SideBar></SideBar>
+      <div className="flex">
+        <SideBar />
         <Feed />
-        <Weiget></Weiget>
-      </main>
+        <Weiget />
+      </div>
     </div>
   );
 }

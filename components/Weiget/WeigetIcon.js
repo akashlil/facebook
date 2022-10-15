@@ -8,7 +8,7 @@ const WeigetIcon = () => {
         layout="fixed"
         className="rounded-full border-4 border-green-700"
       ></img>
-      <p className=" font-semibold ">{"Akash"}</p>
+      <h1 className=" font-semibold ">Akash</h1>
     </div>
   );
 };

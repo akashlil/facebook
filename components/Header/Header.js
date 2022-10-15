@@ -8,11 +8,13 @@ import {
 import { FiPlayCircle } from "react-icons/fi";
 import { MdNotificationsActive } from "react-icons/md";
 import { HiOutlineUsers } from "react-icons/hi";
-import { FaRegUserCircle } from "react-icons/fa";
 import { RiGroup2Line } from "react-icons/ri";
 import HeaderIcon from "./HeaderIcon";
-import { useState } from "react";
+import AuthUser from "../../hook/AuthUser";
+
 const Header = () => {
+  const { loadUser, usr } = AuthUser();
+
   return (
     <div className="flex top-0 bg-white sticky p-2 md:p-0 z-50 lg:px-5 shadow-md ">
       {/* start */}
@@ -52,7 +54,7 @@ const Header = () => {
 
         <Image
           className=" rounded-full"
-          src="https://i.ibb.co/jLcH6qs/akash.jpg"
+          src={usr?.photoURL}
           width={35}
           height={35}
           layout="fixed"
