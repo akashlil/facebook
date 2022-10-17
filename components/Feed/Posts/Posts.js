@@ -13,7 +13,7 @@ const Posts = () => {
   return (
     <div>
       {data?.map((data) => (
-        <Post data={data} key={number++}></Post>
+        <Post data={data} key={number++} userEmail={usr.email}></Post>
       ))}
     </div>
   );

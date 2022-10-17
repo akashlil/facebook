@@ -1,15 +1,69 @@
 import { GoComment } from "react-icons/go";
 import { BsCamera, BsEmojiSmile, BsSearch } from "react-icons/bs";
 import { HiOutlineGift } from "react-icons/hi";
-import { AiOutlineLike } from "react-icons/ai";
+import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 import { RiMessengerLine } from "react-icons/ri";
 import Image from "next/image";
-const Post = ({ data }) => {
+import { useState } from "react";
+import { collection, doc, setDoc } from "firebase/firestore";
+import { db } from "../../../firebase";
+
+const Post = ({ data, userEmail }) => {
+  const [countLike, setCountLike] = useState(0);
+  const userlikeremovepost = data?.userEmailLike?.find(
+    (data) => data == userEmail
+  );
+  console.log(userlikeremovepost);
+  const postLike = (countLike) => {
+    if (countLike <= 1 && !userlikeremovepost) {
+      setCountLike(2);
+      const emailass = data?.userEmailLike;
+      const postUserRef = collection(db, "postuser");
+      setDoc(
+        doc(postUserRef, data?.postId),
+        {
+          like: data?.like + 1,
+          userEmailLike: [...emailass, userEmail],
+        },
+        {
+          merge: true,
+        }
+      )
+        .then(() => {
+          setCountLike(2);
+        })
+        .catch((errr) => {
+          console.log(errr);
+        });
+    }
+
+    if (countLike > 1) {
+      setCountLike(0);
+      const liveRemove = data?.userEmailLike?.filter(
+        (data) => data !== userEmail
+      );
+      console.log(liveRemove);
+      const postUserRef = collection(db, "postuser");
+      setDoc(
+        doc(postUserRef, data.postId),
+        { like: data?.like - 1, userEmailLike: liveRemove },
+        {
+          merge: true,
+        }
+      )
+        .then(() => {
+          setCountLike(0);
+        })
+        .catch((errr) => {
+          console.log(errr);
+        });
+    }
+  };
+
   return (
     <div className="rounded relative mt-6 mb-6 overflow-hidden shadow-md bg-white">
       <div className="px-6 py-4">
         <div className="flex space-x-2 items-center">
-          {" "}
           <Image
             src={data?.photoURL}
             width={35}
@@ -26,20 +80,64 @@ const Post = ({ data }) => {
         src={data?.imagePost}
         alt="Sunset in the mountains"
       />
+      <h1 className="ml-4">
+        {data?.like > 0 ? (
+          <div className="flex items-center">
+            <AiFillLike className=" text-blue-700" />
+            {data?.like}
+          </div>
+        ) : (
+          ""
+        )}
+      </h1>
       <hr className="mt-4 mx-4" />
       <div className="pt-2 pb-2 items-center flex justify-around">
-        <div className="flex items-center gap-1 px-3 py-1 md:px-10 md:py-2 cursor-pointer text-gray-600 hover:bg-gray-200 rounded-md ">
-          <AiOutlineLike />
-          <h1 className="text-md font-semibold">Like</h1>
-        </div>
-        <div className="flex items-center gap-1 px-3 py-1 md:px-10 md:py-2 cursor-pointer text-gray-600 hover:bg-gray-200 rounded-md ">
-          <GoComment />
-          <h1 className="text-md mb-1  font-semibold">Comment</h1>
-        </div>
-        <div className="flex items-center  gap-1 px-3 py-8 md:px-10 md:py-2 cursor-pointer text-gray-600 hover:bg-gray-200 rounded-md ">
-          <RiMessengerLine />
-          <h1 className="text-md font-semibold">Share</h1>
-        </div>
+        {userlikeremovepost == userEmail ? (
+          <button
+            onClick={() => postLike(countLike)}
+            type="button"
+            class="flex items-center px-6 py-2.5 gap-1 text-gray-600 leading-tight rounded-md  hover:bg-gray-200 focus:outline-none focus:ring-0 active:text-blue-800 transition duration-150 ease-in-out"
+          >
+            <AiFillLike className=" text-blue-700 text-2xl" />
+            <h1 className="text-md font-bold mt-1">Like</h1>
+          </button>
+        ) : (
+          <button
+            onClick={() => postLike(countLike)}
+            type="button"
+            class="flex items-center px-6 py-2.5 gap-1 text-gray-600 leading-tight rounded-md  hover:bg-gray-200 focus:outline-none focus:ring-0 active:text-blue-800 transition duration-150 ease-in-out"
+          >
+            <AiOutlineLike className="text-2xl" />
+
+            <h1 className="text-md font-bold mt-1">Like</h1>
+          </button>
+        )}
+        {/* <button
+          onClick={() => postLike(countLike)}
+          type="button"
+          class="flex items-center px-6 py-2.5 gap-1 text-gray-600 leading-tight rounded-md  hover:bg-gray-200 focus:outline-none focus:ring-0 active:text-blue-800 transition duration-150 ease-in-out"
+        >
+          {countLike > 0 ? (
+            <AiFillLike className=" text-blue-700 text-2xl" />
+          ) : (
+            <AiOutlineLike className="text-2xl" />
+          )}
+          <h1 className="text-md font-bold mt-1">Like</h1>
+        </button> */}
+        <button
+          type="button"
+          class="flex items-center px-6 py-2.5 gap-1 text-gray-600 leading-tight rounded-md  hover:bg-gray-200 focus:outline-none focus:ring-0 active:text-blue-800 transition duration-150 ease-in-out"
+        >
+          <GoComment className="text-2xl" />
+          <h1 className="text-md font-bold">Comment</h1>
+        </button>
+        <button
+          type="button"
+          class="flex items-center px-6 py-2.5 gap-1 text-gray-600 leading-tight rounded-md  hover:bg-gray-200 focus:outline-none focus:ring-0 active:text-blue-800 transition duration-150 ease-in-out"
+        >
+          <RiMessengerLine className="text-2xl" />
+          <h1 className="text-md font-bold">Share</h1>
+        </button>
       </div>
       <hr className=" mx-4" />
       <div className="md:px-6 pt-2 pb-2">

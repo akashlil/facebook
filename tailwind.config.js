@@ -4,8 +4,9 @@ module.exports = {
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
+
+  plugins: [require("tailwind-scrollbar")],
   theme: {
     extend: {},
   },
-  plugins: [require("tailwind-scrollbar")({ nocompatible: true })],
 };

@@ -11,7 +11,6 @@ import { HiOutlineUsers } from "react-icons/hi";
 import { RiGroup2Line } from "react-icons/ri";
 import HeaderIcon from "./HeaderIcon";
 import AuthUser from "../../hook/AuthUser";
-
 const Header = () => {
   const { loadUser, usr } = AuthUser();
 

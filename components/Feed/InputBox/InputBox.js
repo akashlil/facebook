@@ -42,6 +42,8 @@ const InputBox = () => {
         post: postInput.current.value,
         lastSeen: serverTimestamp(),
         photoURL: usr.photoURL,
+        like: 0,
+        userEmailLike: [],
       };
       addDoc(postUserRef, data, { merge: true })
         .then((uploadData) => {
@@ -63,6 +65,7 @@ const InputBox = () => {
               getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                 const data = {
                   imagePost: downloadURL,
+                  postId: uploadData.id,
                 };
                 setDoc(doc(postUserRef, uploadData.id), data, {
                   merge: true,
@@ -134,9 +137,9 @@ const InputBox = () => {
       <div class=" bg-gray-200 rounded-full dark:bg-gray-700 mt-2">
         <div
           class="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
-          style={{ width: `${progress ? progress.toFixed(1) : "2"}%` }}
+          style={{ width: `${progress ? parseInt(progress) : "2"}%` }}
         >
-          {progress ? progress : "0"}%
+          {progress ? parseInt(progress) : "0"}%
         </div>
       </div>
 
