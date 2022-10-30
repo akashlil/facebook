@@ -13,8 +13,8 @@ const Post = ({ data, userEmail }) => {
   const userlikeremovepost = data?.userEmailLike?.find(
     (data) => data == userEmail
   );
-  console.log(userlikeremovepost);
   const postLike = (countLike) => {
+    console.log(userlikeremovepost);
     if (countLike <= 1 && !userlikeremovepost) {
       setCountLike(2);
       const emailass = data?.userEmailLike;
@@ -35,9 +35,7 @@ const Post = ({ data, userEmail }) => {
         .catch((errr) => {
           console.log(errr);
         });
-    }
-
-    if (countLike > 1) {
+    } else if ((countLike) => 1) {
       setCountLike(0);
       const liveRemove = data?.userEmailLike?.filter(
         (data) => data !== userEmail
