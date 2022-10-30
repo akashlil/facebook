@@ -144,8 +144,8 @@ const InputBox = () => {
       </div>
 
       <hr className="my-3" />
-      <div className="flex justify-around">
-        <div className="flex items-center gap-1 px-3 py-1 md:px-10 md:py-2 cursor-pointer text-gray-600 hover:bg-gray-200 rounded-md ">
+      <div className="flex  justify-around">
+        <div className="flex items-center gap-1 px-3 py-1 md:px-10 md:py-2 cursor-pointer text-gray-600 hover:bg-gray-200 rounded-md">
           <FaVideo className="text-red-500 text-2xl" />
           <h1 className="text-md font-semibold">Video</h1>
         </div>
@@ -157,7 +157,7 @@ const InputBox = () => {
           <h1 className="text-md mb-1  font-semibold">Photo</h1>
           <input type="file" ref={postFile} hidden className="input" />
         </div>
-        <div className="flex items-center  gap-1 px-3 py-8 md:px-10 md:py-2 cursor-pointer text-gray-600 hover:bg-gray-200 rounded-md ">
+        <div className="flex items-center gap-1 px-3 py-1 md:px-10 md:py-2 cursor-pointer text-gray-600 hover:bg-gray-200 rounded-md">
           <MdOutlineMood className="text-yellow-500 text-2xl" />
           <h1 className="text-md font-semibold">Share</h1>
         </div>

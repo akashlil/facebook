@@ -15,7 +15,7 @@ const Header = () => {
   const { loadUser, usr } = AuthUser();
 
   return (
-    <div className="flex top-0 bg-white sticky p-2 md:p-0 z-50 lg:px-5 shadow-md ">
+    <div className="flex top-0 bg-white sticky py-1 md:p-0 z-50 lg:px-5 shadow-md ">
       {/* start */}
       <div className="hidden sm:flex items-center">
         <Image
@@ -36,7 +36,7 @@ const Header = () => {
 
       {/* center */}
       <div className="flex justify-center grow">
-        <div className="flex space-x-4 md:space-x-2 myDIV">
+        <div className="flex space-x-4 md:space-x-2">
           <HeaderIcon action Icon={AiFillHome}></HeaderIcon>
           <HeaderIcon Icon={HiOutlineUsers}></HeaderIcon>
           <HeaderIcon Icon={FiPlayCircle}></HeaderIcon>

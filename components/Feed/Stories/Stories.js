@@ -33,7 +33,7 @@ const storiesData = [
 ];
 const Stories = () => {
   return (
-    <div className="flex space-x-3 no-scrollbar overflow-x-auto">
+    <div className="flex space-x-4  no-scrollbar overflow-x-auto">
       {storiesData?.map((story) => (
         <StoryCard story={story} key={story.id} />
       ))}

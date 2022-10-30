@@ -75,8 +75,9 @@ const Post = ({ data, userEmail }) => {
         <h1 className="text-gray-700 text-base text-left ">{data?.post}</h1>
       </div>
       <Image
-        width={700}
-        height={500}
+        width={600}
+        height={700}
+        layout="responsive"
         src={data?.imagePost}
         alt="Sunset in the mountains"
       />
